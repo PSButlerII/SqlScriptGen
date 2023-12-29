@@ -62,7 +62,7 @@ database administrators who need to quickly generate SQL scripts without manuall
 - Support for other SQL commands.
 - Support for other database types.
 - Support for other data types.
-- Support for adding constraints.
+- Add options for constraints.
 - Support for adding comments.
 - Support for adding indexes.
 - Support for adding triggers.
