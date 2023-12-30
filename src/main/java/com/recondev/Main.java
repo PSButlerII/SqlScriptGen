@@ -1,7 +1,7 @@
 package com.recondev;
 
 import com.recondev.helpers.Enums;
-import com.recondev.service.DatabaseScriptGenerator;
+import com.recondev.interfaces.DatabaseScriptGenerator;
 import com.recondev.service.ScriptGeneratorFactory;
 import com.recondev.userinteraction.UserInteraction;
 
@@ -17,7 +17,7 @@ public class Main {
 
         String tableName = ui.getTableName();
         Map<String, String> columns = ui.getColumns(dbType);
-        List<String> constraints = ui.getConstraints();
+        List<String> constraints = ui.addSQLConstraints(dbType);
 
         String createTableScript = scriptGenerator.generateCreateTableScript(tableName, columns, constraints);
 

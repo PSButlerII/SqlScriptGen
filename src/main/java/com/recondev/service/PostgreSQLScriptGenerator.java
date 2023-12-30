@@ -1,5 +1,7 @@
 package com.recondev.service;
 
+import com.recondev.interfaces.DatabaseScriptGenerator;
+
 import java.util.List;
 import java.util.Map;
 

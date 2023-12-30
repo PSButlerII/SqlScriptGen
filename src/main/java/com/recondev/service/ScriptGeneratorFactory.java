@@ -1,5 +1,7 @@
 package com.recondev.service;
 
+import com.recondev.interfaces.DatabaseScriptGenerator;
+
 public class ScriptGeneratorFactory {
     public static DatabaseScriptGenerator getScriptGenerator(int dbType) {
         switch (dbType) {
