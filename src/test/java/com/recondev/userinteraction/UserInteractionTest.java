@@ -1,36 +1,27 @@
-//package com.recondev.userinteraction;
-//
-//import com.recondev.helpers.Enums;
-//import org.junit.jupiter.api.Test;
-//
-//import java.io.ByteArrayInputStream;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.Scanner;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//import static org.mockito.Mockito.mock;
-//import static org.mockito.Mockito.verify;
-//
-//class UserInteractionTest {
-//
-//    @Test
-//    void getDatabaseType() {
-//
-//    }
-//
-//    @Test
-//    void getTableName() {
-//    }
-//
-//    @Test
-//    void getColumns() {
-//    }
-//
-//    @Test
-//    void getConstraints() {
-//    }
-//
+package com.recondev.userinteraction;
+
+import org.junit.jupiter.api.Test;
+
+class UserInteractionTest {
+
+    @Test
+    void getDatabaseType() {
+        //
+
+    }
+
+    @Test
+    void getTableName() {
+    }
+
+    @Test
+    void getColumns() {
+    }
+
+    @Test
+    void getConstraints() {
+    }
+
 //    @Test
 //    void simulateUserInputForCreatingTable() {
 //        String simulatedUserInput =
@@ -66,6 +57,6 @@
 //        // Reset System.in to its original
 //
 //    }
-//}
-//
-//
+}
+
+

@@ -1,6 +1,7 @@
 package com.recondev.helpers;
 
 public class Enums {
+
     public enum DatabaseType {
         POSTGRESQL("PostgreSQL"),
         MYSQL("MySQL"),
@@ -190,4 +191,77 @@ public class Enums {
             return complexType;
         }
     }
+
+
+    // TODO: Add PostgreSQLConstraintType
+    public enum PostgreSQLConstraintType {
+        PRIMARY_KEY("PRIMARY KEY"),
+        UNIQUE("UNIQUE"),
+        CHECK("CHECK"),
+        FOREIGN_KEY("FOREIGN KEY"),
+        EXCLUSION("EXCLUSION");
+
+        private final String constraintType;
+        private boolean requiresAdditionalInput;
+
+        PostgreSQLConstraintType(String constraintType) {
+            this.constraintType = constraintType;
+        }
+
+        public static PostgreSQLConstraintType fromInt(int index) {
+            return PostgreSQLConstraintType.values()[index];
+        }
+
+        public String getConstraintType() {
+            return constraintType;
+        }
+
+        public boolean requiresAdditionalInput() {
+            if (this == CHECK || this == FOREIGN_KEY) {
+                return this.requiresAdditionalInput = true;
+            }
+            return this.requiresAdditionalInput;
+        }
+
+        public String getConstraintSQL(String columnName, String additionalInput) {
+            switch (this) {
+                case PRIMARY_KEY:
+                    return "CONSTRAINT " + columnName + "_pk " + this.getConstraintType() + " (" + columnName + ")";
+                case UNIQUE:
+                    return "CONSTRAINT " + columnName + "_unique " + this.getConstraintType() + " (" + columnName + ")";
+                case CHECK:
+                    return "CONSTRAINT " + columnName + "_check " + this.getConstraintType() + " (" + columnName + " " + additionalInput + ")";
+                case FOREIGN_KEY:
+                    return "CONSTRAINT " + columnName + "_fk " + this.getConstraintType() + " (" + columnName + ") REFERENCES " + "(" + additionalInput + ")";
+//                case EXCLUSION:
+//                    return "CONSTRAINT " + columnName + "_exclusion " + this.getConstraintType() + " USING gist (" + columnName + " WITH =)";
+                default:
+                    throw new IllegalArgumentException("Invalid constraint type");
+            }
+        }
+    }
+
+    // TODO: Add MySQLConstraintType
+    public enum MySQLConstraintType {
+        PRIMARY_KEY("PRIMARY KEY"),
+        UNIQUE("UNIQUE"),
+        FOREIGN_KEY("FOREIGN KEY"),
+        CHECK("CHECK");
+
+        private final String constraintType;
+
+        MySQLConstraintType(String constraintType) {
+            this.constraintType = constraintType;
+        }
+
+        public static MySQLConstraintType fromInt(int index) {
+            return MySQLConstraintType.values()[index];
+        }
+
+        public String getConstraintType() {
+            return constraintType;
+        }
+    }
+
+    // TODO: Add MongoDBConstraintType
 }

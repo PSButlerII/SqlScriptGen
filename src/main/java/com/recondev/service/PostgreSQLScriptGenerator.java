@@ -33,4 +33,15 @@ public class PostgreSQLScriptGenerator implements DatabaseScriptGenerator {
     public String generateCreateDatabaseScript(String databaseName) {
         return "CREATE DATABASE " + databaseName + ";";
     }
+
+    // TODO: Add generateCreateSchemaScript
+    // TODO: Add generateCreateViewScript
+    // TODO: Add generateCreateFunctionScript
+    // TODO: Add generateCreateTriggerScript
+    // TODO: Add generateCreateIndexScript
+    // TODO: Add generateCreateSequenceScript
+    // TODO: Add generateCreateUserScript
+    // TODO: Add generateCreateRoleScript
+
+
 }
