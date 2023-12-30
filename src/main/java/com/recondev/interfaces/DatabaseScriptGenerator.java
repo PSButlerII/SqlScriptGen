@@ -1,4 +1,4 @@
-package com.recondev.service;
+package com.recondev.interfaces;
 
 import java.util.List;
 import java.util.Map;
