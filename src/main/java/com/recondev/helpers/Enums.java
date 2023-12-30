@@ -1,5 +1,7 @@
 package com.recondev.helpers;
 
+import com.recondev.interfaces.DatabaseConstraintType;
+
 public class Enums {
 
     public enum DatabaseType {
@@ -192,9 +194,8 @@ public class Enums {
         }
     }
 
-
     // TODO: Add PostgreSQLConstraintType
-    public enum PostgreSQLConstraintType {
+    public enum PostgreSQLConstraintType implements DatabaseConstraintType {
         PRIMARY_KEY("PRIMARY KEY"),
         UNIQUE("UNIQUE"),
         CHECK("CHECK"),
@@ -212,12 +213,21 @@ public class Enums {
             return PostgreSQLConstraintType.values()[index];
         }
 
+        public static PostgreSQLConstraintType fromString(String constraintType) {
+            for (PostgreSQLConstraintType type : PostgreSQLConstraintType.values()) {
+                if (type.getConstraintType().equals(constraintType)) {
+                    return type;
+                }
+            }
+            throw new IllegalArgumentException("Invalid constraint type");
+        }
+
         public String getConstraintType() {
             return constraintType;
         }
 
         public boolean requiresAdditionalInput() {
-            if (this == CHECK || this == FOREIGN_KEY) {
+            if (this == CHECK || this == FOREIGN_KEY || this == fromString("CHECK") || this == fromString("FOREIGN KEY")) {
                 return this.requiresAdditionalInput = true;
             }
             return this.requiresAdditionalInput;
@@ -242,7 +252,7 @@ public class Enums {
     }
 
     // TODO: Add MySQLConstraintType
-    public enum MySQLConstraintType {
+    public enum MySQLConstraintType implements DatabaseConstraintType {
         PRIMARY_KEY("PRIMARY KEY"),
         UNIQUE("UNIQUE"),
         FOREIGN_KEY("FOREIGN KEY"),
@@ -260,6 +270,24 @@ public class Enums {
 
         public String getConstraintType() {
             return constraintType;
+        }
+
+        /**
+         * @return
+         */
+        @Override
+        public boolean requiresAdditionalInput() {
+            return false;
+        }
+
+        /**
+         * @param columnName
+         * @param additionalInput
+         * @return
+         */
+        @Override
+        public String getConstraintSQL(String columnName, String additionalInput) {
+            return null;
         }
     }
 
